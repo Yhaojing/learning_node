@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect();
+        function addUser()
+        {
+            var username = document.getElementById('inputSuccess1').value;
+            socket.emit('add user', {name: username});
+        }
+        socket.on('login', function (data) {
+//            登陆成功可以聊天了
+            document.getElementById('addUser').style.visibility = "hidden";
+            document.getElementById('chat').style.visibility = "visible";
+            document.getElementById('tishi').innerHTML =data.username + "进入聊天室" +"\n"+"现在聊天室人数有"+data.number;
+        })
+        function send(){
+            socket.emit('talking', {mes:document.getElementById('mes').value})
+        }
+        socket.on('talked', function (data) {
+            var allMes = "";
+            data.allMes.forEach(function (item) {
+                allMes += item.name +':'+ item.mes + "<br>";
+            })
+            document.getElementById('history').innerHTML = allMes;
+        })
+    </script>
+</head>
+<body>
+<h5><small id="tishi"></small></h5>
+<div  class="form-group has-success" id="addUser" style="visibility: visible;width: 40%">
+    <label class="control-label" for="inputSuccess1">请输入您的昵称</label><br>
+    <input type="text" class="form-control" id="inputSuccess1" onblur="addUser()"><br>
+</div>
+<div style="visibility: hidden" class="wechat" id="chat">
+    <div class="content">
+        <p class="history" id="history">
+
+        </p>
+        <div class="chat">
+            <input type="text"  id="mes" placeholder="说..."><button type="button" onclick="send()">发送</button>
+        </div>
+        <div class="send"></div>
+    </div>
+
+
+
+</div>
+
+
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

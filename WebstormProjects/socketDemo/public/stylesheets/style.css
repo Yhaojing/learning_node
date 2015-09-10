@@ -1,0 +1,65 @@
+body {
+  padding: -42px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("../images/back.jpg");
+}
+
+a {
+  color: #00B7FF;
+}
+
+.content
+{
+  border: solid #B6AC78;
+  border-radius:19px;
+  position: relative;
+  height: 520px;
+  width: 100%;
+
+}
+
+.chat
+{
+  border-top: solid #B6AC78;
+  border-radius:1px;
+  position: relative;
+  /*top: 10%;*/
+  height: 9%;
+  width: 100%;
+  margin: auto;
+}
+.chat > input
+{
+  border-radius:10px;
+  height: 87%;
+  width: 89%;
+  margin: auto;
+  border: none;
+}
+.chat > button
+{
+  border-radius:10px;
+  height: 87%;
+  width: 9%;
+  color: dodgerblue;
+  float: right;
+
+}
+p.history {
+  position: relative;
+  height: 88%;
+  width: 100%;
+  margin: auto;
+  font-weight: 200;
+  font-size: medium;
+  color: #fefefe;
+}
+.wechat
+{
+  position: relative;
+  top:0;
+  margin:auto;
+  float: left;
+  padding: -10px;
+  width: 45%;
+}
